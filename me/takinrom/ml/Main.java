@@ -9,8 +9,13 @@ public class Main {
     public static void main(String[] args) {
         Random random = new Random();
 
-        int n = 2000;
-        int dimension = 2;
+        int n = 500;
+        int dimension;
+        if (args.length < 1) {
+            dimension = 2;
+        } else {
+            dimension = Integer.parseInt(args[0]);
+        }
         Vector[] data = new Vector[n];
         double[] delta = new double[dimension];
         for (int i = 0; i < n; i++) {
@@ -19,9 +24,9 @@ public class Main {
                 tmp[j] = random.nextDouble(1, 1000);
             }
             data[i] = new Vector(tmp);
-            if (random.nextBoolean() || random.nextBoolean()) {
+            if (random.nextBoolean()) {
                 for (int j = 0; j < dimension; j++) {
-                    delta[j] = random.nextInt(1, 2000) - 1000;
+                    delta[j] = 600;
                 }
                 data[i].add(new Vector(delta));
             }
@@ -32,7 +37,7 @@ public class Main {
         for (int i = 0; i < data.length; i++) {
             System.out.println(data[i]);
         }
-        Kmeans asdf = new Kmeans(data, 6);
+        Kmeans asdf = new Kmeans(data, 2);
         asdf.run();
     }
 }
