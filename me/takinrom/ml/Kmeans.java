@@ -31,10 +31,14 @@ public class Kmeans {
         dimension = 0;
         for (int i = 0; i < n; i++) {
             double[] vec = data[i].getVec();
-            builder[i] = new Vector(vec);
             if (vec.length > dimension) {
                 dimension = vec.length;
             }
+        }
+        for (int i = 0; i < n; i++) {
+            double[] vec = data[i].getVec();
+            builder[i] = new Vector(vec);
+            builder[i].setSite(dimension);
         }
         this.data = builder;
 
