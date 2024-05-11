@@ -2,20 +2,18 @@ package me.takinrom.ml;
 
 import me.takinrom.math.Vector;
 
-import java.util.Arrays;
 import java.util.Random;
 
 /**
  * Kmeans algorithm realization
  */
 public class Kmeans {
-    private int k;
-    private Vector[] data;
-    private int dataSize;
-    private int dimension;
-    private Vector[] centers;
-    private int[] map;
-    private int[] quantities;
+    private final int k;
+    private final Vector[] data;
+    private final int dataSize;
+    private final Vector[] centers;
+    private final int[] map;
+    private final int[] quantities;
 
     public Kmeans(Vector[] data, int k) {
         if (data.length < 1) {
@@ -28,7 +26,7 @@ public class Kmeans {
         int n = data.length;
         Vector[] builder = new Vector[n];
 
-        dimension = 0;
+        int dimension = 0;
         for (int i = 0; i < n; i++) {
             double[] vec = data[i].getVec();
             if (vec.length > dimension) {
@@ -102,17 +100,36 @@ public class Kmeans {
         return isChanged;
     }
 
+    public boolean step() {
+        return this.step(1);
+    }
+
+    public boolean step(int stepCnt) {
+        boolean isChanged = true;
+        for (int i = 0; i < stepCnt; i++) {
+            calcCenters();
+            isChanged = calcMap();
+        }
+        return isChanged;
+    }
+
     public void run() {
         boolean isChanged = true;
         while (isChanged) {
             calcCenters();
             isChanged = calcMap();
-            System.out.print(Arrays.toString(centers) + " : ");
-            System.out.println(Arrays.toString(map));
         }
     }
 
     public int[] getMap() {
         return map;
+    }
+
+    public Vector[] getCenters() {
+        return centers;
+    }
+
+    public Vector[] getData() {
+        return data;
     }
 }

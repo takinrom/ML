@@ -2,6 +2,7 @@ package me.takinrom.ml;
 
 import me.takinrom.math.Vector;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Main {
@@ -34,10 +35,15 @@ public class Main {
 
 
         System.out.println(n);
-        for (int i = 0; i < data.length; i++) {
-            System.out.println(data[i]);
+        for (Vector vector : data) {
+            System.out.println(vector);
         }
         Kmeans asdf = new Kmeans(data, 2);
-        asdf.run();
+        boolean isChanged = true;
+        while (isChanged) {
+            isChanged = asdf.step();
+            System.out.print(Arrays.toString(asdf.getCenters()) + " : ");
+            System.out.println(Arrays.toString(asdf.getMap()));
+        }
     }
 }
