@@ -36,7 +36,7 @@ public class Kmeans {
         for (int i = 0; i < n; i++) {
             double[] vec = data[i].getVec();
             builder[i] = new Vector(vec);
-            builder[i].setSite(dimension);
+            builder[i].setSize(dimension);
         }
         this.data = builder;
 

@@ -25,7 +25,7 @@ public class Vector {
         return vec.length;
     }
 
-    public void setSite(int size) {
+    public void setSize(int size) {
         double[] tmp = new double[size];
         int real_size = Math.min(size, vec.length);
         System.arraycopy(vec, 0, tmp, 0, real_size);
