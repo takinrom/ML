@@ -5,7 +5,7 @@ import me.takinrom.util.LinkedList;
 
 
 /**
- * Kmeans algorithm realization
+ * DBSCAN algorithm realization
  */
 public class DBSCAN {
     private final Vector[] data;
