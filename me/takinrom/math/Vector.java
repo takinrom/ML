@@ -41,10 +41,6 @@ public class Vector {
         }
     }
 
-    public static Vector sum(Vector v) {
-        return new Vector(v.getVec());
-    }
-
     public static Vector sum(Vector a, Vector b) {
         double[] a_vec, b_vec, tmp;
         a_vec = a.getVec();
@@ -61,17 +57,14 @@ public class Vector {
         for (int i = 0; i < A; i++) {
             tmp[i] = a_vec[i] + b_vec[i];
         }
-        for (int i = A; i < B; i++) {
-            tmp[i] = b_vec[i];
-        }
+        System.arraycopy(b_vec, A, tmp, A, B - A);
         return new Vector(tmp);
     }
 
     public static Vector sum(Vector... vectors ) {
         int maxSize = 0;
-        int n = vectors.length;
-        for (int i = 0; i < n; i++) {
-            int size = vectors[i].getSize();
+        for (Vector vector : vectors) {
+            int size = vector.getSize();
             if (size > maxSize) {
                 maxSize = size;
             }
@@ -80,8 +73,8 @@ public class Vector {
         double[] res = new double[maxSize];
 
         double[] t;
-        for (int i = 0; i < n; i++) {
-            t = vectors[i].getVec();
+        for (Vector vector : vectors) {
+            t = vector.getVec();
             for (int j = 0; j < t.length; j++) {
                 res[j] += t[j];
             }

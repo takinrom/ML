@@ -10,12 +10,31 @@ public class Main {
     public static void main(String[] args) {
         Random random = new Random();
 
-        int n = 500;
-        int dimension;
+        int n = 1000;
+        int dimension = 2;
+        int alg;
         if (args.length < 1) {
-            dimension = 2;
+            printHelp();
+            return;
         } else {
-            dimension = Integer.parseInt(args[0]);
+            if (args[0].contentEquals("Kmeans")) {
+                alg = 1;
+            } else if (args[0].contentEquals("DBSCAN")) {
+                alg = 2;
+            } else {
+                printHelp();
+                System.out.println("ERROR: Algorithm must be Kmeans or DBSCAN");
+                return;
+            }
+            if (args.length > 1) {
+                try {
+                    dimension = Integer.parseInt(args[1]);
+                } catch (NumberFormatException e) {
+                    printHelp();
+                    System.out.println("ERROR: Dimension must be an integer");
+                    return;
+                }
+            }
         }
         Vector[] data = new Vector[n];
         double[] delta = new double[dimension];
@@ -38,12 +57,30 @@ public class Main {
         for (Vector vector : data) {
             System.out.println(vector);
         }
-        Kmeans asdf = new Kmeans(data, 2);
-        boolean isChanged = true;
-        while (isChanged) {
-            isChanged = asdf.step();
-            System.out.print(Arrays.toString(asdf.getCenters()) + " : ");
-            System.out.println(Arrays.toString(asdf.getMap()));
+        switch (alg) {
+            case 1:
+                Kmeans asdf = new Kmeans(data, 2);
+                boolean isChanged = true;
+                while (isChanged) {
+                    isChanged = asdf.step();
+                    System.out.print(Arrays.toString(asdf.getCenters()) + " : ");
+                    System.out.println(Arrays.toString(asdf.getMap()));
+                }
+            case 2:
+                DBSCAN zxcv  = new DBSCAN(data, 8.5, 3);
+                zxcv.run();
+                System.out.println(Arrays.toString(zxcv.getClusterMap()));
         }
+    }
+
+    private static void printHelp() {
+        System.out.println("""
+                Usage: java me.takinrom.ml.Main <Algorithm> [Dimension]
+                Example: java me.takinrom.ml.Main Kmeans 3
+
+                Algorithm: Kmeans or DBSCAN
+
+                Dimension: [int] Dimension of test data (default: 2)
+                """);
     }
 }

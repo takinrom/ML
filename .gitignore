@@ -1,3 +1,5 @@
 .idea/
 out/
 ML.iml
+*.class
+me/takinrom/Test.java
