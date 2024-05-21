@@ -1,4 +1,6 @@
-# Kmeans algorithm implementation in Java
+# Kmeans and DBSCAN algorithms implementation in Java
+[Wiki:Kmeans](https://en.wikipedia.org/wiki/K-means_clustering)  
+[Wiki:DBSCAN](https://en.wikipedia.org/wiki/DBSCAN)
 ```
 $ pip install matplotlib
 ```
