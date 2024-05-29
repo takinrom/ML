@@ -5,7 +5,7 @@ import me.takinrom.math.Vector;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Main {
+public class Test {
 
     public static void main(String[] args) {
         Random random = new Random();
@@ -67,7 +67,7 @@ public class Main {
                     System.out.println(Arrays.toString(asdf.getMap()));
                 }
             case 2:
-                DBSCAN zxcv  = new DBSCAN(data, 8.5, 3);
+                DBSCAN zxcv  = new DBSCAN(data, 14, 4);
                 zxcv.run();
                 System.out.println(Arrays.toString(zxcv.getClusterMap()));
         }

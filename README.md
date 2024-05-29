@@ -9,17 +9,10 @@ $ javac me/takinrom/ml/Main
 ```
 ## Kmeans:
 ```
-$ java me.takinrom.ml.Main Kmeans | python DrawKmeans.py
-```
-### 3D:
-```
-$ java me.takinrom.ml.Main Kmeans 3 | python DrawKmeans3d.py
+$ ((echo 150 ; python PrintData.py ./data/iris.data) ; ((echo 150 ; cat ./data/iris.data) | java me.takinrom.ml.Main2 4 Kmeans 3)) | python Draw.py 3
 ```
 ## DBSCAN:
 ```
-$ java me.takinrom.ml.Main DBSCAN | python DrawDBSCAN.py
-```
-### 3D:
-```
-$ java me.takinrom.ml.Main Kmeans 3 | python Draw3d.py
+$ ((echo 150 ; python PrintData.py ./data/iris.data) ; ((echo 150 ; cat ./data/iris.data) | java me.takinrom.ml.Main2 4 DBSCAN 0.836660026534 5)) | python Draw.py 3
+
 ```
