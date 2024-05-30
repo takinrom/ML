@@ -57,7 +57,7 @@ public class Main {
         }
 
         Scanner scanner = new Scanner(System.in);
-        int data_size = Integer.parseInt(scanner.nextLine());
+        int data_size = Integer.parseInt(scanner.nextLine().strip());
 
         String[] splited;
         Vector[] data = new Vector[data_size];
